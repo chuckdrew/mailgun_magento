@@ -1,0 +1,90 @@
+<?php $_emailDetail = $this->getEmailDetail(); ?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td>
+                <h3><?php echo Mage::helper('adminhtml')->__('Email Details') ?></h3>
+            </td>
+            <td class="form-buttons">
+                <?php echo $this->getBackButtonHtml(); ?>
+                <?php echo $this->getViewEmailBodyButtonHtml($_emailDetail->getId()); ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="box-left">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-account"><?php echo Mage::helper('adminhtml')->__('Email Information') ?></h4>
+        </div>
+        <div class="fieldset">
+            <table cellspacing="0" class="form-list">
+                <tbody>
+                    <tr>
+                        <td class="label"><label><?php echo Mage::helper('adminhtml')->__('Date Sent') ?></label></td>
+                        <td class="value"><strong><?php echo Mage::helper('core')->formatDate($_emailDetail->getDateSent(), 'full', true); ?></strong></td>
+                    </tr>
+                    <tr>
+                        <td class="label"><label><?php echo Mage::helper('adminhtml')->__('Subject') ?></label></td>
+                        <td class="value"><strong><?php echo $_emailDetail->getSubject(); ?></strong></td>
+                    </tr>
+                    <tr>
+                        <td class="label"><label><?php echo Mage::helper('adminhtml')->__('Mailgun ID') ?></label></td>
+                        <td class="value"><strong><?php echo $_emailDetail->getMailgunId(); ?></strong></td>
+                    </tr>
+                    <tr>
+                        <td class="label"><label><?php echo Mage::helper('adminhtml')->__('Recipient') ?></label></td>
+                        <td class="value"><strong><?php echo $_emailDetail->getEmailAddress(); ?></strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="box-right">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-account"><?php echo Mage::helper('adminhtml')->__('Customer Information') ?></h4>
+        </div>
+        <div class="fieldset">
+            <?php if($_emailDetail->getCustomer()): ?>
+            <table cellspacing="0" class="form-list">
+                <tbody>
+                    <tr>
+                        <td class="label"><label><?php echo Mage::helper('adminhtml')->__('Customer') ?></label></td>
+                        <td class="value">
+                            <a href="<?php echo $this->getEditCustomerUrl($_emailDetail->getCustomer()->getId()); ?>" title="Edit Customer">
+                                <strong><?php echo $_emailDetail->getCustomer()->getName(); ?></strong>
+                            </a>
+                        </td>  
+                    </tr>
+                    <tr>
+                        <td class="label"><label><?php echo Mage::helper('adminhtml')->__('Store') ?></label></td>
+                        <td class="value"><strong><?php echo $_emailDetail->getCustomer()->getStore()->getName(); ?></strong></td>
+                    </tr>
+                    <tr>
+                        <td class="label"><label><?php echo Mage::helper('adminhtml')->__('Customer Group') ?></label></td>
+                        <td class="value"><strong><?php echo $this->getCustomerGroupName($_emailDetail->getCustomer()->getGroupId()); ?></strong></td>
+                    </tr>
+                    <tr>
+                        <td class="label"><label><?php echo Mage::helper('adminhtml')->__('Customer Since') ?></label></td>
+                        <td class="value"><strong><?php echo $this->formatCustomerCreateDate($_emailDetail->getCustomer()->getCreatedAt()); ?></strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <?php else: ?>
+            <p>No Customer Data Available.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td>
+                <h3><?php echo Mage::helper('adminhtml')->__('Email Events') ?></h3>
+            </td>
+        </tr>
+    </table>
+</div>
+<?php echo $this->getLayout()->createBlock('freelunchlabs_mailgun/adminhtml_event_container')->getGridHtml(); ?>

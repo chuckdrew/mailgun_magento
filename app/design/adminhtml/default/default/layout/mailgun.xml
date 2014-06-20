@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <action method="addTab">
+                <name>customer_tab_mailgun</name>
+                <block>freelunchlabs_mailgun/adminhtml_customer_tab_mailgun</block>
+            </action>
+        </reference>
+    </adminhtml_customer_edit>
+    <adminhtml_emailtracking_index>
+        <reference name="content">
+            <block type="freelunchlabs_mailgun/adminhtml_emailtracking" name="emailtracking" template="mailgun/globalemailgrid.phtml"></block>
+        </reference>
+    </adminhtml_emailtracking_index>
+    <adminhtml_emailtracking_emaildetail>
+        <reference name="content">
+            <block type="freelunchlabs_mailgun/adminhtml_emailtracking" name="emailtracking" template="mailgun/emaildetail.phtml"></block>
+        </reference>
+    </adminhtml_emailtracking_emaildetail>
+</layout>

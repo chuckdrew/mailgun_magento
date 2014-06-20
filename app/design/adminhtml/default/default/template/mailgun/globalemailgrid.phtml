@@ -1,0 +1,15 @@
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td>
+                <h3><?php echo Mage::helper('adminhtml')->__('Email Activity') ?></h3>
+            </td>
+            <td class="form-buttons">
+                <?php echo $this->getFetch24HoursOfEmailActivityButton(); ?>
+                <?php echo $this->getDeleteEmailTrackingLogsDaysButton(); ?>
+                <?php echo $this->getDeleteAllEmailTrackingLogsButton(); ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<?php echo $this->getLayout()->createBlock('freelunchlabs_mailgun/adminhtml_global_container')->getGridHtml(); ?>
