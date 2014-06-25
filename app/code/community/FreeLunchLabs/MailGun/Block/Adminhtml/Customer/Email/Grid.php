@@ -57,7 +57,7 @@ class FreeLunchLabs_MailGun_Block_Adminhtml_Customer_Email_Grid extends Mage_Adm
     }
 
     public function getGridUrl() {
-        return $this->getUrl('*/emailtracking/emailGrid', array(
+        return $this->getUrl('*/emailtracking/emailgrid', array(
             '_current' => true,
             'id' => Mage::registry('current_customer')->getId()
         ));
