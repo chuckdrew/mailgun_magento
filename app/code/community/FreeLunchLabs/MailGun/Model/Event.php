@@ -3,7 +3,7 @@
 class FreeLunchLabs_MailGun_Model_Event extends Mage_Core_Model_Abstract {
     //Event types
 
-    const PUSHED = "pushed";
+    const GENERATED = "generated";
     const ACCEPTED = "accepted";
     const REJECTED = "rejected";
     const DELIVERED = "delivered";

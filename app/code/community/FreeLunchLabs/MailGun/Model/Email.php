@@ -22,7 +22,7 @@ class FreeLunchLabs_MailGun_Model_Email extends Mage_Core_Model_Abstract {
         $this->setDateSent(Mage::getSingleton('core/date')->gmtTimestamp());
         $this->save();
 
-        Mage::getModel('freelunchlabs_mailgun/event')->logEmailEvent($this->getId(), FreeLunchLabs_MailGun_Model_Event::PUSHED, $this);
+        Mage::getModel('freelunchlabs_mailgun/event')->logEmailEvent($this->getId(), FreeLunchLabs_MailGun_Model_Event::GENERATED, $this);
     }
 
     public function loadByMailgunIdAndRecipient($mailgunId, $recipient) {
