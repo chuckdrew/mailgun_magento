@@ -4,7 +4,7 @@ class FreeLunchLabs_MailGun_Model_Mailgun extends Mage_Core_Model_Abstract {
 
     public $apiUrl = "https://api.mailgun.net/v2/";
 
-    public function mailgunRequest($type, $domain, $apiKey, $data, $method = Zend_Http_Client::GET, $uriOveride = false) {
+    public function mailgunRequest($type, $domain, $apiKey, $data, $method = Zend_Http_Client::GET, $uriOveride = false, $files = null) {
      
         $client = new Zend_Http_Client();
         $client->setAuth("api", $apiKey);
@@ -23,6 +23,12 @@ class FreeLunchLabs_MailGun_Model_Mailgun extends Mage_Core_Model_Abstract {
         } else {
             foreach($data as $key => $value) {
                 $client->setParameterGet($key, $value);
+            }
+        }
+
+        if($files) {
+            foreach($files as $file) {
+                $client->setFileUpload($file['filename'], $file['param'], $file['data']);
             }
         }
         
@@ -44,8 +50,15 @@ class FreeLunchLabs_MailGun_Model_Mailgun extends Mage_Core_Model_Abstract {
         
         $domain = $message->getStore()->getConfig('mailgun/general/domain');
         $apiKey = $message->getStore()->getConfig('mailgun/general/key');
-       
-        $sendResponse = $this->mailgunRequest('messages', $domain, $apiKey, $message->getMessage(), Zend_Http_Client::POST);
+        $files = null;
+
+        if(count($message->getAttachments())) {
+            foreach($message->getAttachments() as $attachment) {
+                $files[] = $attachment;
+            }
+        }
+
+        $sendResponse = $this->mailgunRequest('messages', $domain, $apiKey, $message->getMessage(), Zend_Http_Client::POST, false, $files);
         
         if($message->getStore()->getConfig('mailgun/events/store')) {
             Mage::getModel('freelunchlabs_mailgun/email')->saveInitialSend($message, $sendResponse);

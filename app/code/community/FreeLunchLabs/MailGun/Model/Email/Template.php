@@ -80,6 +80,15 @@ class FreeLunchLabs_MailGun_Model_Email_Template extends Mage_Core_Model_Email_T
                 $message->setHtmlBody($processedTemplateBody);
             }
 
+            //Attachments
+            if($this->getMail()->hasAttachments) {
+                foreach($this->getMail()->getParts() as $part) {
+                    if($part->disposition == "attachment") {
+                        $message->addAttachment($part->filename, $part->getRawContent());
+                    }
+                }
+            }
+
             //Add Unique Args
             $message->addCustomData("message_data", array('id' => 123456));
             

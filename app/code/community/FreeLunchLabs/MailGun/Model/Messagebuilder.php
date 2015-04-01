@@ -25,6 +25,7 @@ class FreeLunchLabs_MailGun_Model_Messagebuilder extends Varien_Object {
     protected $message = array();
     protected $variables = array();
     protected $files = array();
+    protected $attachments = array();
     protected $counters = array('recipients' => array('to' => 0,
             'cc' => 0,
             'bcc' => 0),
@@ -150,16 +151,13 @@ class FreeLunchLabs_MailGun_Model_Messagebuilder extends Varien_Object {
         return $this->message['html'];
     }
 
-    public function addAttachment($attachmentPath, $attachmentName = null) {
-        if (preg_match("/^@/", $attachmentPath)) {
-            if (isset($this->files["attachment"])) {
-                $attachment = array('filePath' => $attachmentPath,
-                    'remoteName' => $attachmentName);
-                array_push($this->files["attachment"], $attachment);
-            } else {
-                $this->files["attachment"] = array(array('filePath' => $attachmentPath,
-                        'remoteName' => $attachmentName));
-            }
+    public function addAttachment($filename, $data) {
+        if ($filename != null && $data != null) {
+            $this->attachments[] = array(
+                'filename' => $filename,
+                'data' => $data,
+                'param' => 'attachment'
+            );
             return true;
         } else {
             throw new FreeLunchLabs_MailGun_Model_Exceptions_InvalidParameter(self::INVALID_PARAMETER_ATTACHMENT);
@@ -291,6 +289,10 @@ class FreeLunchLabs_MailGun_Model_Messagebuilder extends Varien_Object {
 
     public function getFiles() {
         return $this->files;
+    }
+
+    public function getAttachments() {
+        return $this->attachments;
     }
 
 }
