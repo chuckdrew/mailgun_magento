@@ -4,7 +4,7 @@ class FreeLunchLabs_MailGun_Block_Adminhtml_Event_Renderer_Timestamp extends Mag
     public function render(Varien_Object $row)
     {
         $value =  $row->getData($this->getColumn()->getIndex());
-        $date = Mage::getSingleton('core/date')->date(null, $value);
+        $date = Mage::getSingleton('core/date')->timestamp($value);
         return Mage::helper('core')->formatDate(new Zend_Date($date), 'medium', true);
     }
 }
