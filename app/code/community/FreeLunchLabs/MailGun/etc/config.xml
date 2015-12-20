@@ -2,7 +2,7 @@
 <config>
     <modules>
         <FreeLunchLabs_MailGun>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </FreeLunchLabs_MailGun>
     </modules>
     <global>
@@ -74,11 +74,11 @@
         <menu>
             <customer>
                 <children>
-                    <cloudfront translate="title" module="mailgun">
+                    <emailtracking translate="title" module="mailgun">
                         <title>Email Tracking</title>
                         <sort_order>9999</sort_order>
                         <action>adminhtml/emailtracking</action>
-                    </cloudfront>
+                    </emailtracking>
                 </children>
             </customer>
         </menu>
@@ -86,6 +86,14 @@
             <resources>
                 <admin>
                     <children>
+                        <customer>
+                            <children>
+                                <emailtracking translate="title" module="mailgun">
+                                    <title>Email Tracking</title>
+                                    <sort_order>70</sort_order>
+                                </emailtracking>
+                            </children>
+                        </customer>
                         <system>
                             <children>
                                 <config>

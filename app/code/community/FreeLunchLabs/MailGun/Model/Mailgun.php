@@ -75,7 +75,7 @@ class FreeLunchLabs_MailGun_Model_Mailgun extends Mage_Core_Model_Abstract {
             if($store->getConfig('mailgun/events/store')) {
                 $this->processEmailEventsForSingleStore($store);
             }
-        }        
+        }
     }
     
     public function processEmailEventsForSingleStore(Mage_Core_Model_Store $store) {
@@ -88,9 +88,9 @@ class FreeLunchLabs_MailGun_Model_Mailgun extends Mage_Core_Model_Abstract {
             );
             
             $mailgunEvents = $this->mailgunRequest(
-                    'events', 
-                    $store->getConfig('mailgun/general/domain'), 
-                    $store->getConfig('mailgun/general/key'), 
+                    'events',
+                    $store->getConfig('mailgun/general/domain'),
+                    $store->getConfig('mailgun/general/key'),
                     $data
             );
             
@@ -98,12 +98,12 @@ class FreeLunchLabs_MailGun_Model_Mailgun extends Mage_Core_Model_Abstract {
             
             while (sizeof($mailgunEvents->items) > 0) {
                 $mailgunEvents = $this->mailgunRequest(
-                    'events', 
-                    $store->getConfig('mailgun/general/domain'), 
-                    $store->getConfig('mailgun/general/key'), 
+                    'events',
+                    $store->getConfig('mailgun/general/domain'),
+                    $store->getConfig('mailgun/general/key'),
                     $data,
                     Zend_Http_Client::GET,
-                    $mailgunEvents->paging->next    
+                    $mailgunEvents->paging->next
                 );
                 
                 $events = array_merge($events, $mailgunEvents->items);

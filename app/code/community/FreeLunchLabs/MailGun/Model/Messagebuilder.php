@@ -148,7 +148,7 @@ class FreeLunchLabs_MailGun_Model_Messagebuilder extends Varien_Object {
     }
     
     public function getHtmlBody() {
-        return $this->message['html'];
+        return isset($this->message['html']) ? $this->message['html'] : " ";
     }
 
     public function addAttachment($filename, $data) {
