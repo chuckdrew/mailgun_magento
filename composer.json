@@ -1,0 +1,21 @@
+{
+    "name": "freelunchlabs/mailgun",
+    "description": "This Magento extension configures your store to send all transactional emails via Mailgun.",
+    "type": "magento-module",
+    "homepage": "https://github.com/chuckdrew/mailgun_magento",
+    "license": "MIT",
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "Allows the package to be installed into Magento"
+    },
+    "authors": [
+	    {
+	    	"name": "Chuck Drew",
+	    	"email": "charles@freelunchlabs.com",
+	    	"homepage": "http://www.freelunchlabs.com/",
+	    	"role": "Web Developer"
+	    }
+	],
+	"support": {
+        "issues": "https://github.com/chuckdrew/mailgun_magento/issues"
+    }
+}
