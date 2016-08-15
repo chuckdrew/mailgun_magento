@@ -8,19 +8,19 @@ class FreeLunchLabs_MailGun_Model_Resource_Email extends Mage_Core_Model_Resourc
     }
 
     public function deleteEmailTrackingLogs($days = false) {
-        if($days) {   
+        if($days) {
             $daysPrior = date("Y-m-d H:i:s", Mage::getModel('core/date')->timestamp(time() - (86400 * $days)));
             $where = " WHERE date_sent < '{$daysPrior}'";
         } else {
             $where = "";
         }
-     
+
         $query = "DELETE FROM {$this->getMainTable()}" . $where;
 
         Mage::getSingleton('core/resource')
                 ->getConnection('core_write')
                 ->query($query);
- 
+
     }
-    
+
 }

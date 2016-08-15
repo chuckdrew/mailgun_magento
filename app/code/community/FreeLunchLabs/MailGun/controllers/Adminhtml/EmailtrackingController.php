@@ -16,10 +16,10 @@ class FreeLunchLabs_MailGun_Adminhtml_EmailtrackingController extends Mage_Admin
         Mage::register('current_customer', $customer);
         return $this;
     }
-    
+
     protected function _initEmail($idFieldName = 'id') {
         $emailId = (int) $this->getRequest()->getParam($idFieldName);
-        $email = Mage::getModel('freelunchlabs_mailgun/email');  
+        $email = Mage::getModel('freelunchlabs_mailgun/email');
 
         if ($emailId) {
             $email->load($emailId);
@@ -27,35 +27,35 @@ class FreeLunchLabs_MailGun_Adminhtml_EmailtrackingController extends Mage_Admin
 
         Mage::register('current_email', $email);
         return $this;
-    } 
+    }
 
     public function emailGridAction()
     {
         $this->_initCustomer();
         $this->loadLayout();
         $gridBlock = $this->getLayout()->createBlock('freelunchlabs_mailgun/adminhtml_customer_email');
-        
+
         $this->getResponse()->setBody($gridBlock->getGridHtml());
     }
-    
+
     public function indexAction() {
         $this->_title($this->__('System'))->_title($this->__('Email Tracking'));
-        
-        $this->loadLayout();      
+
+        $this->loadLayout();
         $this->_setActiveMenu('customer');
         $this->renderLayout();
     }
-    
+
     public function emailDetailAction() {
         $this->_title($this->__('System'))->_title($this->__('Email Tracking - Detail'));
-        
+
         $this->_initEmail();
-        
-        $this->loadLayout();      
+
+        $this->loadLayout();
         $this->_setActiveMenu('customer');
         $this->renderLayout();
     }
-    
+
     public function getEmailEventsAction() {
         Mage::getModel('freelunchlabs_mailgun/mailgun')->processEmailEventsForAllStores();
 
@@ -65,14 +65,14 @@ class FreeLunchLabs_MailGun_Adminhtml_EmailtrackingController extends Mage_Admin
 
         $this->_redirect('*/*');
     }
-    
+
     public function emailViewAction() {
         $this->_title($this->__('System'))->_title($this->__('Email Tracking - Detail - Email Body'));
         $this->_initEmail();
-   
+
         $this->getResponse()->setBody(Mage::registry('current_email')->getBody());
     }
-    
+
     public function deleteEmailTrackingLogsDaysAction() {
         Mage::getModel('freelunchlabs_mailgun/email')->deleteEmailTrackingLogsDays();
 
@@ -82,7 +82,7 @@ class FreeLunchLabs_MailGun_Adminhtml_EmailtrackingController extends Mage_Admin
 
         $this->_redirect('*/*');
     }
-    
+
     public function deleteEmailTrackingLogsAction() {
         Mage::getModel('freelunchlabs_mailgun/email')->deleteEmailTrackingLogs();
 

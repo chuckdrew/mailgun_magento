@@ -6,5 +6,5 @@ class FreeLunchLabs_MailGun_Model_Resource_Event extends Mage_Core_Model_Resourc
     {
         $this->_init('freelunchlabs_mailgun/event', 'id');
     }
-    
+
 }

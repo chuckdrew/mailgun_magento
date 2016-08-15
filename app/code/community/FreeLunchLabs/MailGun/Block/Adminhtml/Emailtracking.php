@@ -51,13 +51,13 @@ class FreeLunchLabs_MailGun_Block_Adminhtml_Emailtracking extends Mage_Adminhtml
         return $this->getLayout()->createBlock('adminhtml/widget')->getButtonHtml('Fetch Past 24 Hours of Email Activity', $onClick);
     }
 
-    public function getDeleteEmailTrackingLogsDaysButton() {       
+    public function getDeleteEmailTrackingLogsDaysButton() {
         $days = Mage::getStoreConfig('mailgun/events/days');
 
         if ($days) {
             $url = $this->getUrl('*/*/deleteEmailTrackingLogsDays');
             $onClick = "confirmSetLocation('Are you sure?', '{$url}')";
-            
+
             return $this->getLayout()->createBlock('adminhtml/widget')->getButtonHtml("Delete Email Records Older Than {$days} Days", $onClick, 'delete');
         } else {
             return "";

@@ -23,14 +23,14 @@ class FreeLunchLabs_MailGun_Block_Adminhtml_Customer_Tab_Mailgun extends Mage_Ad
     public function isHidden() {
         return false;
     }
-    
+
     public function getAfter() {
         return 'tags';
     }
-    
+
     public function getGrid() {
-        $gridBlock = $this->getLayout()->createBlock('freelunchlabs_mailgun/adminhtml_customer_email'); 
-        
+        $gridBlock = $this->getLayout()->createBlock('freelunchlabs_mailgun/adminhtml_customer_email');
+
         return $gridBlock->getGridHtml();
     }
 
