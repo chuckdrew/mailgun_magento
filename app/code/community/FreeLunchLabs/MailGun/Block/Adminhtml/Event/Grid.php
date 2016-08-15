@@ -14,19 +14,19 @@ class FreeLunchLabs_MailGun_Block_Adminhtml_Event_Grid extends Mage_Adminhtml_Bl
     protected function _prepareCollection() {
         $collection = Mage::getResourceModel('freelunchlabs_mailgun/event_collection');
         $collection->addFieldToFilter('email_id', Mage::registry('current_email')->getId());
-        
+
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
 
     protected function _prepareColumns() {
-        
+
         $this->addColumn('event_type', array(
             'header' => 'Event',
             'index' => 'event_type',
             'renderer'  => 'FreeLunchLabs_MailGun_Block_Adminhtml_Event_Renderer_Type'
         ));
-        
+
         $this->addColumn('timestamp', array(
             'header' => 'Event Time',
             'index' => 'timestamp',
