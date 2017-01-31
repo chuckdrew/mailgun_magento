@@ -1,0 +1,15 @@
+{
+    "name": "freelunchlabs/magento-mailgun",
+    "type": "magento-module",
+    "license": "OSL-3.0",
+    "description": "Mailgun for Magento Email Delivery by Free Lunch Labs",
+    "homepage": "https://github.com/chuckdrew/mailgun_magento",
+    "authors": [{
+        "name": "Charles Drew",
+        "email": "charles@freelunchlabs.com",
+        "homepage": "http://www.freelunchlabs.com/"
+    }],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
