@@ -1,0 +1,5 @@
+## Modman Module Magento Mailgun
+app/code/community/FreeLunchLabs/MailGun/ 					app/code/community/FreeLunchLabs/MailGun/
+app/design/adminhtml/default/default/layout/mailgun.xml 	app/design/adminhtml/default/default/layout/mailgun.xml
+app/design/adminhtml/default/default/template/mailgun/ 		app/design/adminhtml/default/default/template/mailgun/
+app/etc/modules/FreeLunchLabs_MailGun.xml 					app/etc/modules/FreeLunchLabs_MailGun.xml

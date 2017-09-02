@@ -8,6 +8,6 @@ class FreeLunchLabs_MailGun_Block_Adminhtml_Customer_Email extends Mage_Adminhtm
         $this->_blockGroup = 'freelunchlabs_mailgun';
         $this->_controller = 'adminhtml_customer_email';
         $this->_headerText = false;
-        
+
     }
 }

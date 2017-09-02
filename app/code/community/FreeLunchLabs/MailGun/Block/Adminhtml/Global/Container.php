@@ -8,6 +8,6 @@ class FreeLunchLabs_MailGun_Block_Adminhtml_Global_Container extends Mage_Adminh
         $this->_blockGroup = 'freelunchlabs_mailgun';
         $this->_controller = 'adminhtml_global';
         $this->_headerText = false;
-        
+
     }
 }

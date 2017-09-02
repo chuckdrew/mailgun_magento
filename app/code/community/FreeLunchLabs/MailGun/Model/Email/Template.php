@@ -15,13 +15,13 @@ class FreeLunchLabs_MailGun_Model_Email_Template extends Mage_Core_Model_Email_T
         } else {
             $store = Mage::app()->getStore();
         }
-        
+
         if ($store->getConfig('mailgun/general/active')) {
             if (!$this->isValidForSend()) {
-                Mage::logException(new Exception('This letter cannot be sent.')); 
+                Mage::logException(new Exception('This letter cannot be sent.'));
                 return false;
             }
-            
+
             $message = Mage::getModel('freelunchlabs_mailgun/messagebuilder');
 
             //Recipient(s)
@@ -45,14 +45,14 @@ class FreeLunchLabs_MailGun_Model_Email_Template extends Mage_Core_Model_Email_T
                     $message->setPrimaryRecipient($email);
                 }
                 $isPrimary = false;
-                
+
                 $message->addToRecipient($names[$key] . " <" . $email . ">");
             }
-            
+
             //Subject
             $subject = $this->getProcessedTemplateSubject($variables);
             $message->setSubject($subject);
-            
+
             //From Name
             $message->setFromAddress($this->getSenderName() . " <" . $this->getSenderEmail() . ">");
 
@@ -91,22 +91,22 @@ class FreeLunchLabs_MailGun_Model_Email_Template extends Mage_Core_Model_Email_T
 
             //Add Unique Args
             $message->addCustomData("message_data", array('id' => 123456));
-            
+
             //Tag message with type
             $message->addTag($this->getTemplateId());
             $message->addTag($store->getConfig('mailgun/general/tag'));
-            
+
             if($store->getConfig('mailgun/events/opens')) {
                 $message->setOpenTracking(true);
             }
-            
+
             if($store->getConfig('mailgun/events/clicks')) {
                 $message->setClickTracking(true);
             }
-            
+
             //Set store
             $message->setStore($store);
-            
+
             //Send it!
             try {
                 Mage::getModel('freelunchlabs_mailgun/mailgun')->send($message);
@@ -131,7 +131,7 @@ class FreeLunchLabs_MailGun_Model_Email_Template extends Mage_Core_Model_Email_T
     public function setReturnPath($email) {
         $this->returnPath = $email;
         return parent::setReturnPath($email);
-        
+
     }
 
     public function setReplyTo($email) {
